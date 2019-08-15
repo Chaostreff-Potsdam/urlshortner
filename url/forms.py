@@ -9,7 +9,7 @@ forbidden_routes = ["static", "admin", "stats", "api", "new"]
 
 class UrlForm(wtforms.Form):
     old = wtforms.StringField(label='', description='Enter full URL',  validators=[validators.DataRequired(' If URL\'s were that short, would you even be here?')])
-    new = wtforms.StringField(label=app.config["SERVER_NAME"]+"/", description='(optional) enter target')
+    new = wtforms.StringField(label=app.config["HOST_NAME"]+"/", description='(optional) enter target')
 
     if app.config["RECAPTCHA_PUBLIC_KEY"]:
         recaptcha = RecaptchaField()

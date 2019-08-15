@@ -16,4 +16,5 @@ RECAPTCHA_PUBLIC_KEY = None # <Your own keys from Google>
 RECAPTCHA_PRIVATE_KEY = '<You can get these keys at https://www.google.com/recaptcha/admin>'
 RECAPTCHA_DATA_ATTRS = {'theme': 'dark'}
 SERVER_NAME = 'localhost:5000'
-# SERVER_NAME = 'YourDomain.com'
+HOST_NAME = SERVER_NAME
+# HOST_NAME = 'YourDomain.com'

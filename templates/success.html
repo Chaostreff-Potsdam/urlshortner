@@ -38,7 +38,7 @@ $(document).ready(function(){
            <span class="input-group-btn">
                 <a class='btn btn-primary copy-link' style="color: aqua; border-radius: 0;" data-clipboard-text='{{ url_for('index', _external=True) }}{{ code }}'>Copy</a>
            </span>
-		   <input style="border-radius: 0;" class='form-control' type='text' value='{{ config.SERVER_NAME }}/{{ code }}' readonly/>
+		   <input style="border-radius: 0;" class='form-control' type='text' value='{{ config.HOST_NAME }}/{{ code }}' readonly/>
           </div>
           <div class="col-xs-12" id="redirect"> Redirects to: {{ old }}</div>
     </div>
