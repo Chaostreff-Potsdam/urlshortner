@@ -5,10 +5,10 @@ from flask_wtf.recaptcha import RecaptchaField
 from app import app, db
 from url.models import Url
 
-forbidden_routes = ["static", "admin", "stats", "api", "new"]
+forbidden_routes = ["static", "admin", "stats", "api", "new", "preview", "p"]
 
 class UrlForm(wtforms.Form):
-    old = wtforms.StringField(label='', description='Enter full URL',  validators=[validators.DataRequired(' If URL\'s were that short, would you even be here?')])
+    old = wtforms.StringField(label='', description='Enter full URL',  validators=[validators.DataRequired('If URL\'s were that short, would you even be here?')])
     new = wtforms.StringField(label=app.config["HOST_NAME"]+"/", description='(optional) enter target')
 
     if app.config["RECAPTCHA_PUBLIC_KEY"]:
