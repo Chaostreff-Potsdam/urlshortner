@@ -23,6 +23,6 @@ class UrlForm(wtforms.Form):
 
     def save_url(self, url):
         self.populate_obj(url)
-        if not "http" in url.old:
+        if not url.old.startswith("http"):
             url.old = "http://" + url.old
         return url

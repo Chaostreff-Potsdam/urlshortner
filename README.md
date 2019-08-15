@@ -15,6 +15,7 @@
 * Create a virtualenv
 * Install the requirements ```pip install -r requirements.txt```
 * Update settings.py with your own MySQL credentials
+* (Or add and edit local_settings.py, which overwrites fields in settings.py)
 * Create the database in MySQL ```CREATE DATABASE shortener;```
 * Run ```python create_db.py``` to setup the table
 * Lastly, alter the database in MySQL to make characters case-sensitive:

@@ -1,20 +1,57 @@
 import os
 
-DB_USERNAME = '<db user>'
-DB_PASSWORD = '<db pwd>'
-DB_DATABASE_NAME = 'shortener'
-DB_HOST = os.getenv('IP', '127.0.0.1')
+#######################################################################
+###
+###  Documentation of available options.
+###  Use local_settings.py if you don't want to leak passwords etc.
+###
+
 APPLICATION_DIR = os.path.dirname(os.path.realpath(__file__))
-SQLALCHEMY_TRACK_MODIFICATIONS = True
-DEBUG = True
-SECRET_KEY = '<Rk65mpq1nz8du0DLnSfLdQ>'
-ENABLE_STATS = False
-#SQLALCHEMY_DATABASE_URI = "mysql+pymysql://%s:%s@%s/%s" % (DB_USERNAME, DB_PASSWORD, DB_HOST, DB_DATABASE_NAME)
-SQLALCHEMY_DATABASE_URI = os.path.sep.join(["sqlite:///", APPLICATION_DIR, "test.sqlite"])
 STATIC_DIR = os.path.join(APPLICATION_DIR, 'static')
-RECAPTCHA_PUBLIC_KEY = None # <Your own keys from Google>
-RECAPTCHA_PRIVATE_KEY = '<You can get these keys at https://www.google.com/recaptcha/admin>'
+
+SQLALCHEMY_TRACK_MODIFICATIONS = True
+SECRET_KEY = '<Rk65mpq1nz8du0DLnSfLdQ>'
+
+
+## Disable this in production environments
+
+DEBUG = True
+
+
+## Shows/Hides an usage list of all active links
+
+ENABLE_STATS = False
+
+
+## Adapt these to match your requirements
+##    https://flask-sqlalchemy.palletsprojects.com/en/2.x/config/
+
+SQLALCHEMY_DATABASE_URI = os.path.sep.join(["sqlite:///", APPLICATION_DIR, "test.sqlite"])
+
+
+## Change to something else than None to enable captchas
+## Get your own keys at https://www.google.com/recaptcha/admin
+## When singing up select API-Version 2
+
+RECAPTCHA_PUBLIC_KEY = None 
+RECAPTCHA_PRIVATE_KEY = None
 RECAPTCHA_DATA_ATTRS = {'theme': 'dark'}
+
+
+## Where to bind to (testing context)
+
 SERVER_NAME = 'localhost:5000'
+
+
+## Change this to YourDomain.com in production
+
 HOST_NAME = SERVER_NAME
-# HOST_NAME = 'YourDomain.com'
+
+
+## To overwrite any settings (without leaking confidental
+## data to git) add and edit local_settings.py.
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
