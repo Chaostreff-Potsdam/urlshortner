@@ -18,7 +18,7 @@ class UrlForm(wtforms.Form):
        new = field.data
        if '/' in new:
            raise validators.ValidationError("Contains invalid characters")
-       if db.session.query(db.exists().where(Url.new)).scalar() or new in forbidden_routes:
+       if db.session.query(db.exists().where(new == Url.new)).scalar() or (new in forbidden_routes):
            raise validators.ValidationError("URL already taken.")
 
     def save_url(self, url):
