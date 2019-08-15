@@ -11,13 +11,12 @@ from url.models import Url
 def index():
     def gen():
         chars = string.ascii_letters + string.digits
-        length = 3
+        length = 5
         code = ''.join(choice(chars) for x in range(length))
-        print("verifying", code)
         exists = db.session.query(db.exists().where(Url.new == code)).scalar()
         if not exists:
-            print("Your new code is:", code)
             return code
+
     code = gen()
     while code is None:
         code = gen()
@@ -49,8 +48,11 @@ def redirect_to_old(new):
 @app.route("/stats")
 @app.route("/stats/<int:page>")
 def stats(page=1):
-    stats = Url.query.order_by(Url.id.desc()).paginate(page, 10, False)
-    return render_template("stats.html", stats=stats)
+    if not app.config["ENABLE_STATS"]:
+        return render_template('404.html'), 404
+    else:
+        stats = Url.query.order_by(Url.id.desc()).paginate(page, 10, False)
+        return render_template("stats.html", stats=stats)
 
 
 @app.errorhandler(404)

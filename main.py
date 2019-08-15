@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from app import app, db
 import url.views
 import url.models

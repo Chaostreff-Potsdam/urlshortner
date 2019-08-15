@@ -15,7 +15,9 @@
   <div class="container col-md-6 col-md-offset-6">
     <h1 style="text-align:left;">
     <a id="links" href="{{ url_for('index') }}">URL Shortener</a>
+	{% if config.ENABLE_STATS %}
     <span style="float:right;"><a id="links" href="{{ url_for('stats') }}"> Stats </a></span>
+	{% endif %}
     </h1>
 
     {% block content %}
@@ -26,7 +28,7 @@
 
   <div class="container col-md-6 col-md-offset-6">
       <footer>
-          <p>Made with <3 by <a id="gs" href="https://www.glowsquid.com/" target="_blank">GlowSquid</a> 2017-2018</p>
+		  <p>Made with <3 by <a id="gs" href="https://www.glowsquid.com/" target="_blank">GlowSquid</a> & <a href="http://github.com/Chaostreff-Potsdam/urlshortner">Chaostreff Potsdam</a> 2017-2019</p>
       </footer>
   </div>
 
