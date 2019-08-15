@@ -17,17 +17,20 @@ def index():
         if not exists:
             return code
 
-    code = gen()
-    while code is None:
-        code = gen()
-
-    if request.method == 'POST' and code is not None:
+    if request.method == 'POST':
         form = UrlForm(request.form)
         if form.validate():
-            url = form.save_url(Url(new=code))
+            url = form.save_url(Url())
+
+            if not url.new:
+                code = gen()
+                while code is None:
+                    code = gen()
+                url.new = code
+
             db.session.add(url)
             db.session.commit()
-            return render_template("success.html", code=code, old=url.old)
+            return render_template("success.html", code=url.new, old=url.old)
     else:
         form = UrlForm()
     return render_template("index.html", form=form)
