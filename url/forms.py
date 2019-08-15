@@ -1,6 +1,6 @@
 import wtforms
 from wtforms import validators
-# from flask_wtf.recaptcha import RecaptchaField
+from flask_wtf.recaptcha import RecaptchaField
 
 from app import app, db
 from url.models import Url
@@ -10,7 +10,9 @@ forbidden_routes = ["static", "admin", "stats", "api", "new"]
 class UrlForm(wtforms.Form):
     old = wtforms.StringField(label='', description='Enter full URL',  validators=[validators.DataRequired(' If URL\'s were that short, would you even be here?')])
     new = wtforms.StringField(label=app.config["SERVER_NAME"]+"/", description='(optional) enter target')
-    # recaptcha = RecaptchaField()
+
+    if app.config["RECAPTCHA_PUBLIC_KEY"]:
+        recaptcha = RecaptchaField()
 
     def validate_new(form, field):
        new = field.data
