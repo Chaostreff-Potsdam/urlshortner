@@ -39,13 +39,9 @@ RECAPTCHA_DATA_ATTRS = {'theme': 'dark'}
 
 
 ## Where to bind to (testing context)
+## Change to YourDomain.com in production
 
 SERVER_NAME = 'localhost:5000'
-
-
-## Change this to YourDomain.com in production
-
-HOST_NAME = SERVER_NAME
 
 
 ## To overwrite any settings (without leaking confidental

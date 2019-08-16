@@ -1,11 +1,9 @@
-# import os
 import string
 from random import choice
 from flask import render_template, request, redirect, abort
 from app import app, db
 from url.forms import UrlForm
 from url.models import Url
-
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -52,7 +50,7 @@ def redirect_to_old(new):
 @app.route("/stats/<int:page>")
 def stats(page=1):
     if not app.config["ENABLE_STATS"]:
-        return render_template('404.html'), 404
+        abort(404)
     else:
         stats = Url.query.order_by(Url.id.desc()).paginate(page, 10, False)
         return render_template("stats.html", stats=stats)
@@ -61,3 +59,4 @@ def stats(page=1):
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
+
