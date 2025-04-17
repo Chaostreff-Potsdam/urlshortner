@@ -2,5 +2,6 @@ Flask
 PyMySQL
 Flask-SQLAlchemy
 Flask-Bcrypt
+Flask-Migrate
 Flask-WTF
 WTForms
